@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Suppliers - Indiloom</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Indiloom</a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="for-buyers.html">For Buyers</a></li>
+            <!-- <li><a href="for-suppliers.html">For Suppliers</a></li> -->
+            <!-- <li><a href="contact.html">Contact</a></li> -->
+            <li><button class="navbar-cta" onclick="window.location.href='contact.html'">Request Quote</button></li>
+        </ul>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> / For Suppliers
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Manufacturers">
+        </div>
+        <div class="hero-content">
+            <h1>Your Customers Are Looking For You. Are They Finding You?</h1>
+            <p>Indiloom connects Panipat's best mills directly with serious buyers—retailers, exporters, interior designers, and international traders. No middlemen. No margin cuts. Just direct orders.</p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick="window.location.href='contact.html'">Apply to Network</button>
+                <button class="btn btn-secondary" onclick="document.querySelector('.supplier-benefits').scrollIntoView({behavior: 'smooth'})">What's the Catch?</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUPPLIER BENEFITS -->
+    <section class="supplier-benefits" style="padding: 5rem 2rem; background: #fafafa;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 class="section-title">What You Actually Get</h2>
+            <p class="section-subtitle">No promises. Just how it works.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <div class="trust-item">
+                    <h3>✓ Direct Buyer Access</h3>
+                    <p>Serious buyers—not middlemen trying to flip your quote. You compete on quality and service, not price alone.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ No Middleman Fee</h3>
+                    <p>You set your pricing. Buyers see it. No 10-20% agent margin cut off your profit. You keep what you earn.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Consistent Flow of Inquiries</h3>
+                    <p>Not 1 order a month with 3-month gaps. Steady: We match your capacity with multiple buyers searching for exactly what you make.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Trust Built Upfront</h3>
+                    <p>We verify you. You're vetted. Buyers trust your factory from day one. No proving yourself for 6 months.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Access to Exports</h3>
+                    <p>International buyers and traders looking for Panipat mills. Expand beyond domestic-only sourcing.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ We Actually Support You</h3>
+                    <p>Contract questions? Buyer wants different specs? We help troubleshoot. You're not dealing with this alone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TYPICAL SUPPLIERS -->
+    <section style="padding: 5rem 2rem; background: white;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 class="section-title">All Sizes Welcome</h2>
+            <p class="section-subtitle">From 10-loom family operations to 500+ spindle installations</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+                <div style="padding: 2rem; background: #fafafa; border-radius: 8px; border-left: 4px solid #1565c0;">
+                    <h4 style="color: #1565c0; margin-bottom: 0.5rem;">Small Mills</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Niche specialists, family operations with unique techniques and consistency</p>
+                </div>
+                <div style="padding: 2rem; background: #fafafa; border-radius: 8px; border-left: 4px solid #1565c0;">
+                    <h4 style="color: #1565c0; margin-bottom: 0.5rem;">Mid-Scale Factories</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Established mills with consistent capacity, certifications, and proven delivery</p>
+                </div>
+                <div style="padding: 2rem; background: #fafafa; border-radius: 8px; border-left: 4px solid #1565c0;">
+                    <h4 style="color: #1565c0; margin-bottom: 0.5rem;">Large Operations</h4>
+                    <p style="font-size: 0.9rem; color: #666;">High-volume mills pursuing bulk orders and export market expansion</p>
+                </div>
+                <div style="padding: 2rem; background: #fafafa; border-radius: 8px; border-left: 4px solid #1565c0;">
+                    <h4 style="color: #1565c0; margin-bottom: 0.5rem;">Specialty Makers</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Premium/artisanal producers with techniques that justify price premium</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REQUIREMENTS -->
+    <section style="padding: 5rem 2rem; background: #fafafa;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 class="section-title">To Join: Here's What We Need</h2>
+            <p class="section-subtitle">Not asking for perfection—just seriousness</p>
+            
+            <div class="why-us-grid">
+                <div class="trust-item">
+                    <h3>✓ Real Production Capacity</h3>
+                    <p>You can actually deliver what you quote, on time, without compromising quality. No "we can do 10 looms if we borrow from next month."</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Consistent Quality</h3>
+                    <p>ISO 9001 is nice, but not required. What matters: batch-to-batch consistency that buyers can count on.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Legal Compliance</h3>
+                    <p>Valid GST registration, labor laws followed, basic safety standards met. We verify, but we help new applicants get compliant too.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>✓ Professional Communication</h3>
+                    <p>Email or WhatsApp—we're not picky. Just respond to buyer inquiries within 24 hours and discuss requirements clearly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section style="padding: 5rem 2rem; background: white;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 class="section-title">How This Actually Works</h2>
+            
+            <div class="how-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Apply to Indiloom</h3>
+                    <p>Tell us: mill name, capacity, specialties (bedsheets, towels, etc.), lead times, and approx pricing range. We're checking if there's a fit.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>We Verify You</h3>
+                    <p>We check compliance, capacity, and quality. For established mills: may require a site visit. For new applications: we guide you on what's needed.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Buyers Start Inquiring</h3>
+                    <p>Once approved, you receive buyer reqs (RFQ emails) matching your capacity. 3-5 per month typically. You respond with quotes. You negotiate directly.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>We Support the Deal</h3>
+                    <p>Contract questions? Buyer wants a modification? Quality issue mid-order? We troubleshoot. You focus on manufacturing. We handle the relationship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding: 5rem 2rem; background: #1565c0; color: white; text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title" style="color: white; margin-bottom: 1rem;">Ready to Access Direct Buyers?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">Join Panipat's most connected mills. Get 3-5 buyer inquiries monthly. Negotiate your own prices. Keep your margins. Grow your business without middlemen.</p>
+            <button onclick="window.location.href='contact.html'" style="background: white; color: #1565c0; padding: 1rem 2.5rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 1rem;">Start Your Application</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="for-buyers.html">For Buyers</a>
+                <a href="for-suppliers.html">For Suppliers</a>
+                <a href="products.html">Products</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-divider">
+                <p class="footer-text">© 2026 Indiloom. Direct sourcing from Panipat's verified home textile manufacturers.</p>
+                <p class="footer-contact">info@indiloom.com | +91 98765 43210</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

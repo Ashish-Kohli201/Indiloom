@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indiloom - Home Textile Sourcing Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #111;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: #f9f9f9;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #111;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .navbar-menu a {
+            text-decoration: none;
+            color: #111;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .navbar-menu a:hover {
+            color: #1565c0;
+        }
+
+        .navbar-cta {
+            background: #1565c0;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .navbar-cta:hover {
+            background: #0d47a1;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* HERO SEARCH */
+        .hero-search {
+            padding: 3rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .hero-search h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero-search p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .hero-search-bar {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-search-bar input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+
+        .hero-search-bar input:focus {
+            outline: none;
+            border-color: #1565c0;
+            background: white;
+        }
+
+        .quick-categories {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .category-pill {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid #d0d0d0;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .category-pill:hover {
+            border-color: #1565c0;
+            background: #f0f5ff;
+        }
+
+        .category-pill.active {
+            background: #1565c0;
+            color: white;
+            border-color: #1565c0;
+        }
+
+        /* MAIN CONTENT */
+        .main-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* SIDEBAR FILTERS */
+        .filters {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 4px;
+            height: fit-content;
+            border: 1px solid #e0e0e0;
+        }
+
+        .filters h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #111;
+        }
+
+        .filter-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .filter-option input[type="checkbox"] {
+            margin-right: 0.6rem;
+            cursor: pointer;
+        }
+
+        .filter-option label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .filter-option input[type="range"] {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .reset-filters {
+            background: none;
+            border: 1px solid #d0d0d0;
+            color: #1565c0;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .reset-filters:hover {
+            background: #f0f5ff;
+        }
+
+        /* PRODUCTS GRID */
+        .products-section {
+            flex: 1;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .products-count {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .sort-dropdown {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #999;
+            grid-column: 1 / -1;
+        }
+
+        /* PRODUCT CARD */
+        .product-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: box-shadow 0.2s, border-color 0.2s;
+            background: white;
+        }
+
+        .product-card:hover {
+            border-color: #c0c0c0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .product-image {
+            height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 3rem;
+        }
+
+        .product-content {
+            padding: 1.2rem;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #1565c0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #111;
+            line-height: 1.4;
+        }
+
+        .product-meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .product-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-meta-label {
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .product-meta-value {
+            font-weight: 600;
+            color: #222;
+        }
+
+        .product-supplier {
+            font-size: 0.85rem;
+            color: #1565c0;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .product-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        .btn-secondary {
+            padding: 0.6rem 1rem;
+            border: 1px solid #d0d0d0;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #1565c0;
+            background: #f0f5ff;
+        }
+
+        .btn-primary {
+            padding: 0.6rem 1rem;
+            background: #1565c0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #0d47a1;
+        }
+
+        /* SUPPLIERS SECTION */
+        .suppliers-section {
+            padding: 3rem 2rem;
+            background: #f9f9f9;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 3rem;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .suppliers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .supplier-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 1.5rem;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .supplier-card:hover {
+            border-color: #c0c0c0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .supplier-header {
+            margin-bottom: 1rem;
+        }
+
+        .supplier-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 0.3rem;
+        }
+
+        .supplier-location {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .supplier-spec {
+            font-size: 0.9rem;
+            color: #1565c0;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .supplier-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .supplier-stat {
+            flex: 1;
+        }
+
+        .supplier-stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .supplier-stat-label {
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .supplier-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        /* HOW IT WORKS */
+        .how-it-works {
+            padding: 3rem 2rem;
+            background: white;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+            border-radius: 50%;
+            font-weight: 700;
+            color: #1565c0;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* BENEFITS SECTION */
+        .benefits-section {
+            padding: 3rem 2rem;
+            background: #f9f9f9;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-block {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .benefit-block h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-block p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-list {
+            list-style: none;
+        }
+
+        .benefit-list li {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.6rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .benefit-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1565c0;
+            font-weight: 700;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            padding: 3rem 2rem;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact-detail {
+            margin-bottom: 1rem;
+        }
+
+        .contact-detail-label {
+            font-size: 0.85rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-detail-value {
+            font-weight: 600;
+            color: #1565c0;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1565c0;
+            box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: #1565c0;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .form-submit:hover {
+            background: #0d47a1;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: #1565c0;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .navbar-logo {
+                flex: 1;
+                min-width: 100%;
+            }
+
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-search h1 {
+                font-size: 1.5rem;
+            }
+
+            .quick-categories {
+                gap: 0.8rem;
+            }
+
+            .category-pill {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .suppliers-grid,
+            .benefits-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Indiloom</a>
+        <button class="mobile-menu-toggle" id="menuToggle">☰</button>
+        <ul class="navbar-menu" id="menu">
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="for-buyers.html">For Buyers</a></li>
+            <li><a href="for-suppliers.html">For Suppliers</a></li>
+            <!-- <li><a href="contact.html">Contact</a></li> -->
+            <li><button class="navbar-cta" onclick="window.location.href='contact.html'">Request Quote</button></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SEARCH -->
+    <section class="hero-search">
+        <h1>Discover Home Textile Manufacturers</h1>
+        <p>Access verified suppliers in Panipat. Find products, compare pricing, request quotes.</p>
+        <div class="hero-search-bar">
+            <input type="text" id="heroSearchInput" placeholder="Search fabrics, products, suppliers…" onkeyup="updateFilters()">
+        </div>
+        <div class="quick-categories">
+            <div class="category-pill active" onclick="filterByCategory('All')">All</div>
+            <div class="category-pill" onclick="filterByCategory('Bedding')">Bedding</div>
+            <div class="category-pill" onclick="filterByCategory('Curtains')">Curtains</div>
+            <div class="category-pill" onclick="filterByCategory('Cushions')">Cushions</div>
+            <div class="category-pill" onclick="filterByCategory('Towels')">Towels</div>
+            <div class="category-pill" onclick="filterByCategory('Rugs')">Rugs</div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+        <!-- FILTERS -->
+        <aside class="filters">
+            <h3>Filters</h3>
+
+            <div class="filter-section">
+                <div class="filter-section-title">Category</div>
+                <div class="filter-option">
+                    <input type="checkbox" id="cat-all" checked onchange="updateFilters()">
+                    <label for="cat-all">All Categories</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="cat-bedding" onchange="updateFilters()">
+                    <label for="cat-bedding">Bedding</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="cat-curtains" onchange="updateFilters()">
+                    <label for="cat-curtains">Curtains</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="cat-cushions" onchange="updateFilters()">
+                    <label for="cat-cushions">Cushions</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="cat-towels" onchange="updateFilters()">
+                    <label for="cat-towels">Towels</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="cat-rugs" onchange="updateFilters()">
+                    <label for="cat-rugs">Rugs</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-section-title">Material</div>
+                <div class="filter-option">
+                    <input type="checkbox" id="mat-cotton" onchange="updateFilters()">
+                    <label for="mat-cotton">Cotton</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="mat-polyester" onchange="updateFilters()">
+                    <label for="mat-polyester">Polyester</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="mat-wool" onchange="updateFilters()">
+                    <label for="mat-wool">Wool</label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-section-title">Price Range</div>
+                <div class="filter-option">
+                    <input type="range" id="priceRange" min="100" max="5000" value="5000" onchange="updateFilters()">
+                    <div style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
+                        Up to ₹<span id="priceValue">5000</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="reset-filters" onclick="resetFilters()">Reset Filters</button>
+        </aside>
+
+        <!-- PRODUCTS SECTION -->
+        <section class="products-section">
+            <div class="products-header">
+                <div class="products-count" id="productCount">Showing 10 products</div>
+                <select class="sort-dropdown" onchange="sortProducts(this.value)">
+                    <option value="">Most Relevant</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Product Name</option>
+                </select>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products rendered here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- SUPPLIERS SECTION -->
+    <section class="suppliers-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Featured Suppliers</h2>
+                <p>Verified manufacturers from Panipat's textile hub</p>
+            </div>
+
+            <div class="suppliers-grid">
+                <div class="supplier-card">
+                    <div class="supplier-header">
+                        <div class="supplier-name">Panipat Textiles Co.</div>
+                        <div class="supplier-location">📍 Panipat, Haryana</div>
+                    </div>
+                    <div class="supplier-spec">Bedding Specialist • Established 2008</div>
+                    <div class="supplier-stats">
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">180+</div>
+                            <div class="supplier-stat-label">Products</div>
+                        </div>
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">45</div>
+                            <div class="supplier-stat-label">Clients</div>
+                        </div>
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">ISO 9001</div>
+                            <div class="supplier-stat-label">Certified</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Specialized in premium cotton bedding sheets and duvet covers. Serves retail brands and exporters across 12 countries.</p>
+                    <div class="supplier-actions">
+                        <button class="btn-secondary">View Store</button>
+                        <button class="btn-primary">Contact</button>
+                    </div>
+                </div>
+
+                <div class="supplier-card">
+                    <div class="supplier-header">
+                        <div class="supplier-name">Mill Direct Manufacturing</div>
+                        <div class="supplier-location">📍 Panipat, Haryana</div>
+                    </div>
+                    <div class="supplier-spec">Multi-Category • Established 2005</div>
+                    <div class="supplier-stats">
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">260+</div>
+                            <div class="supplier-stat-label">Products</div>
+                        </div>
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">62</div>
+                            <div class="supplier-stat-label">Clients</div>
+                        </div>
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">ISO 9001</div>
+                            <div class="supplier-stat-label">Certified</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Full-service textile manufacturer covering bedding, curtains, cushions, and table linens. Competitive pricing, fast turnaround.</p>
+                    <div class="supplier-actions">
+                        <button class="btn-secondary">View Store</button>
+                        <button class="btn-primary">Contact</button>
+                    </div>
+                </div>
+
+                <div class="supplier-card">
+                    <div class="supplier-header">
+                        <div class="supplier-name">Imperial Towel Mills</div>
+                        <div class="supplier-location">📍 Panipat, Haryana</div>
+                    </div>
+                    <div class="supplier-spec">Towel Specialist • Established 2012</div>
+                    <div class="supplier-stats">
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">95+</div>
+                            <div class="supplier-stat-label">Products</div>
+                        </div>
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">28</div>
+                            <div class="supplier-stat-label">Clients</div>
+                        </div>
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">ISO 9001</div>
+                            <div class="supplier-stat-label">Certified</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Premium towel manufacturer with focus on zero-twist and luxury segments. Hotels and spa chains are key customers.</p>
+                    <div class="supplier-actions">
+                        <button class="btn-secondary">View Store</button>
+                        <button class="btn-primary">Contact</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Simple, transparent process</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Search & Discover</h3>
+                    <p>Browse our product catalog and verified supplier network. Use filters to find exactly what you need.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Request Quote</h3>
+                    <p>Submit your requirement with quantity and specifications. Suppliers respond within 24-48 hours.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Compare & Order</h3>
+                    <p>Review quotes, negotiate terms, and place orders directly with your chosen supplier.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS SECTION -->
+    <section class="benefits-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>For Buyers</h2>
+                <p>Why buyers choose Indiloom</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-block">
+                    <h3>Verified Suppliers</h3>
+                    <p>Every manufacturer is verified for compliance, capacity, and quality standards.</p>
+                    <ul class="benefit-list">
+                        <li>GST & Legal Compliance</li>
+                        <li>Site-Verified Capacity</li>
+                        <li>Quality Audit</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-block">
+                    <h3>Better Pricing</h3>
+                    <p>Direct access to suppliers means no middleman margins. Compare quotes transparently.</p>
+                    <ul class="benefit-list">
+                        <li>No Broker Fees</li>
+                        <li>Competitive Bidding</li>
+                        <li>Volume Discounts</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-block">
+                    <h3>Faster Process</h3>
+                    <p>From inquiry to sample in 7-10 days. Streamlined communication with verified suppliers.</p>
+                    <ul class="benefit-list">
+                        <li>Quick Response</li>
+                        <li>Sample Delivery</li>
+                        <li>Direct Negotiation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOR SUPPLIERS SECTION -->
+    <section class="benefits-section" style="background: white; border-top: 1px solid #e0e0e0;">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>For Suppliers</h2>
+                <p>Why manufacturers choose Indiloom</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-block">
+                    <h3>Direct Buyer Access</h3>
+                    <p>Connect with serious buyers actively looking for your products. No middlemen taking margins.</p>
+                    <ul class="benefit-list">
+                        <li>Qualified Leads</li>
+                        <li>Consistent Demand</li>
+                        <li>Build Relationships</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-block">
+                    <h3>Expand Your Market</h3>
+                    <p>Reach domestic buyers and international traders. Access markets beyond your current network.</p>
+                    <ul class="benefit-list">
+                        <li>Export Opportunities</li>
+                        <li>Domestic Brands</li>
+                        <li>Stable Orders</li>
+                    </ul>
+                </div>
+
+                <div class="benefit-block">
+                    <h3>No Marketing Needed</h3>
+                    <p>We handle buyer discovery and qualification. You focus on manufacturing and quality.</p>
+                    <ul class="benefit-list">
+                        <li>Verified Buyers</li>
+                        <li>Our Marketing</li>
+                        <li>Your Expertise</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Get Started</h3>
+                <p>Submit your requirement if you're a buyer looking for suppliers. Or apply to join the platform if you're a manufacturer in Panipat.</p>
+
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <div class="contact-detail-label">Email</div>
+                        <div class="contact-detail-value">info@indiloom.com</div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-label">WhatsApp</div>
+                        <div class="contact-detail-value">+91 98765 43210</div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-label">Phone</div>
+                        <div class="contact-detail-value">+91 9876 54321</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Company Name *</label>
+                        <input type="text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Inquiry Type *</label>
+                        <select required>
+                            <option>I'm a Buyer (Looking for Suppliers)</option>
+                            <option>I'm a Supplier (Looking for Buyers)</option>
+                            <option>General Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#products">Bedding</a></li>
+                    <li><a href="#products">Curtains</a></li>
+                    <li><a href="#products">Cushions</a></li>
+                    <li><a href="#products">Towels</a></li>
+                    <li><a href="#products">Rugs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Marketplace</h4>
+                <ul>
+                    <li><a href="index.html">Browse Products</a></li>
+                    <li><a href="#contact">Request Quote</a></li>
+                    <li><a href="about-us.html">How It Works</a></li>
+                    <li><a href="for-buyers.html">For Buyers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about-us.html">About</a></li>
+                    <li><a href="for-suppliers.html">For Suppliers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Policies</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Dispute Resolution</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Indiloom. Direct home textile sourcing from Panipat. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // PRODUCT DATABASE
+        const products = [
+            { id: 1, name: "Egyptian Cotton Sheets (400 TC)", category: "Bedding", material: "Cotton", price: 450, supplier: "Panipat Textiles Co.", icon: "🧵" },
+            { id: 2, name: "Sateen Duvet Covers (Solid Color)", category: "Bedding", material: "Cotton", price: 380, supplier: "Mill Direct Manufacturing", icon: "🧵" },
+            { id: 3, name: "Blackout Thermal Curtains", category: "Curtains", material: "Polyester", price: 280, supplier: "Premium Curtain Mills", icon: "🧵" },
+            { id: 4, name: "Velvet Cushion Covers (45cm)", category: "Cushions", material: "Velvet", price: 320, supplier: "Artisan Textiles Panipat", icon: "🧵" },
+            { id: 5, name: "Premium Bath Towels (Zero Twist)", category: "Towels", material: "Cotton", price: 180, supplier: "Imperial Towel Mills", icon: "🧵" },
+            { id: 6, name: "Hand-Woven Kilim Rug (8x10 ft)", category: "Rugs", material: "Wool", price: 2800, supplier: "Heritage Rug Weavers", icon: "🧵" },
+            { id: 7, name: "Jacquard Tablecloths (Damask)", category: "Table Linens", material: "Cotton", price: 420, supplier: "Elegant Table Textiles", icon: "🧵" },
+            { id: 8, name: "Fitted Sheet Set (Deep Pocket)", category: "Bedding", material: "Cotton", price: 520, supplier: "Standard Sheet Manufacturing", icon: "🧵" },
+            { id: 9, name: "Microfiber Pillows (Set of 2)", category: "Bedding", material: "Polyester", price: 250, supplier: "Comfort Home Textiles", icon: "🧵" },
+            { id: 10, name: "Linen Tablecloths (Natural)", category: "Table Linens", material: "Cotton", price: 350, supplier: "Natural Textiles Ltd", icon: "🧵" },
+        ];
+
+        let filteredProducts = [...products];
+
+        function updateFilters() {
+            const categories = [];
+            const materials = [];
+            const maxPrice = parseInt(document.getElementById('priceRange').value);
+            const searchTerm = document.getElementById('heroSearchInput').value.toLowerCase();
+
+            document.querySelectorAll('input[id^="cat-"]:checked').forEach(cb => {
+                if (cb.id !== 'cat-all') {
+                    const cat = cb.id.replace('cat-', '').charAt(0).toUpperCase() + cb.id.replace('cat-', '').slice(1);
+                    categories.push(cat);
+                }
+            });
+
+            document.querySelectorAll('input[id^="mat-"]:checked').forEach(cb => {
+                const mat = cb.id.replace('mat-', '').charAt(0).toUpperCase() + cb.id.replace('mat-', '').slice(1);
+                materials.push(mat);
+            });
+
+            document.getElementById('priceValue').textContent = maxPrice;
+
+            filteredProducts = products.filter(product => {
+                const categoryMatch = categories.length === 0 || categories.includes(product.category);
+                const materialMatch = materials.length === 0 || materials.includes(product.material);
+                const priceMatch = product.price <= maxPrice;
+                const searchMatch = searchTerm === '' || 
+                    product.name.toLowerCase().includes(searchTerm) || 
+                    product.category.toLowerCase().includes(searchTerm) ||
+                    product.supplier.toLowerCase().includes(searchTerm);
+
+                return categoryMatch && materialMatch && priceMatch && searchMatch;
+            });
+
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const count = document.getElementById('productCount');
+
+            if (filteredProducts.length === 0) {
+                grid.innerHTML = '<div class="no-results">No products match your filters. Try adjusting your search.</div>';
+                count.textContent = 'Showing 0 products';
+                return;
+            }
+
+            count.textContent = `Showing ${filteredProducts.length} products`;
+            
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    <div class="product-image">${product.icon}</div>
+                    <div class="product-content">
+                        <div class="product-category">${product.category}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-meta">
+                            <div class="product-meta-item">
+                                <span class="product-meta-label">Material</span>
+                                <span class="product-meta-value">${product.material}</span>
+                            </div>
+                            <div class="product-meta-item">
+                                <span class="product-meta-label">Price</span>
+                                <span class="product-meta-value">₹${product.price}</span>
+                            </div>
+                        </div>
+                        <div class="product-supplier">${product.supplier}</div>
+                        <div class="product-actions">
+                            <button class="btn-secondary">View Details</button>
+                            <button class="btn-primary" onclick="scrollToContact()">Request Quote</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function sortProducts(method) {
+            const sorted = [...filteredProducts];
+            switch(method) {
+                case 'price-low':
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    sorted.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+            }
+            filteredProducts = sorted;
+            renderProducts();
+        }
+
+        function filterByCategory(category) {
+            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.querySelectorAll('input[id^="cat-"]').forEach(cb => cb.checked = false);
+            if (category !== 'All') {
+                document.getElementById('cat-' + category.toLowerCase()).checked = true;
+            } else {
+                document.getElementById('cat-all').checked = true;
+            }
+            updateFilters();
+        }
+
+        function resetFilters() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.getElementById('cat-all').checked = true;
+            document.getElementById('priceRange').value = 5000;
+            document.getElementById('heroSearchInput').value = '';
+            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+            document.querySelector('.category-pill').classList.add('active');
+            updateFilters();
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your inquiry. We will get back to you within 24 hours.');
+            event.target.reset();
+        }
+
+        // Mobile menu
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('menu').classList.toggle('active');
+        });
+
+        // Initial render
+        renderProducts();
+    </script>
+</body>
+</html>

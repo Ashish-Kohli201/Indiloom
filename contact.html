@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Indiloom</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Indiloom</a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="for-buyers.html">For Buyers</a></li>
+            <li><a href="for-suppliers.html">For Suppliers</a></li>
+            <!-- <li><a href="contact.html">Contact</a></li> -->
+            <li><button class="navbar-cta" onclick="window.location.href='contact.html'">Request Quote</button></li>
+        </ul>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> / Contact
+    </div>
+
+    <!-- HERO -->
+    <section style="padding: 4rem 2rem; background: #1565c0; color: white; text-align: center;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Let's Get Started</h1>
+            <p style="font-size: 1.1rem; opacity: 0.95;">Tell us what you need (or what you have to offer). We'll do the legwork of finding the right match.</p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" style="padding: 5rem 2rem;">
+        <div class="contact-container">
+            <h2>Tell Us What You Need</h2>
+            <p class="section-subtitle">Whether you're hunting suppliers or looking for buyers, start here. We'll get back to you in 24 hours.</p>
+            
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                    <div class="form-error" data-field="name">Name is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="form-error" data-field="email">Email is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number (with country code) *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+                    <div class="form-error" data-field="phone">Phone is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required>
+                    <div class="form-error" data-field="company">Company name is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="requirement">Product Requirement or Inquiry *</label>
+                    <textarea id="requirement" name="requirement" required placeholder="e.g., Looking for bedding sets, bedsheet suppliers, custom curtain manufacturers, etc."></textarea>
+                    <div class="form-error" data-field="requirement">Requirement is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Estimated Quantity or Volume</label>
+                    <input type="text" id="quantity" name="quantity" placeholder="e.g., 1000 units per month, 5000 pieces per order">
+                </div>
+
+                <div id="formSuccess" class="form-success">
+                    ✓ Thank you! Your request has been submitted. We'll contact you within 24 hours.
+                </div>
+
+                <div id="formError" class="form-success" style="color: #e74c3c;">
+                    ✗ Error submitting form. Please try again or contact us directly.
+                </div>
+
+                <div class="contact-actions">
+                    <button type="submit" class="btn btn-primary">Send Request</button>
+                    <button type="button" class="btn btn-secondary" onclick="openWhatsApp()">Chat on WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- INFO SECTION -->
+    <section style="padding: 5rem 2rem; background: #fafafa;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 class="section-title" style="text-align: center;">Direct Channels</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="padding: 2rem; background: white; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
+                    <div style="font-size: 2rem; color: #1565c0; margin-bottom: 0.5rem;">📧</div>
+                    <h4 style="color: #111; margin-bottom: 0.5rem;">Email</h4>
+                    <p style="color: #1565c0; font-weight: 600;">info@indiloom.com</p>
+                </div>
+
+                <div style="padding: 2rem; background: white; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
+                    <div style="font-size: 2rem; color: #1565c0; margin-bottom: 0.5rem;">📱</div>
+                    <h4 style="color: #111; margin-bottom: 0.5rem;">WhatsApp</h4>
+                    <p style="color: #1565c0; font-weight: 600;">+91 98765 43210</p>
+                </div>
+
+                <div style="padding: 2rem; background: white; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
+                    <div style="font-size: 2rem; color: #1565c0; margin-bottom: 0.5rem;">📞</div>
+                    <h4 style="color: #111; margin-bottom: 0.5rem;">Phone</h4>
+                    <p style="color: #1565c0; font-weight: 600;">+91 9876 54321</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 8px; border-left: 4px solid #1565c0;">
+                <h4 style="color: #1565c0; margin-bottom: 0.8rem;">Based In</h4>
+                <p style="color: #666; margin-bottom: 0.5rem;"><strong>Panipat, Haryana, India</strong></p>
+                <p style="color: #666; font-size: 0.9rem;">We're on the ground in India's textile hub. That means direct factory access, on-the-ground verification, and real relationships with Panipat's best mills.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="padding: 5rem 2rem; background: white;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h2 class="section-title" style="text-align: center;">Quick Questions</h2>
+            
+            <div style="display: grid; gap: 2rem; margin-top: 3rem;">
+                <div style="padding: 2rem; background: #fafafa; border-radius: 8px; border-left: 4px solid #1565c0;">
+                    <h4 style="color: #1565c0; margin-bottom: 0.8rem;">How fast will I hear back?</h4>
+                    <p style="color: #666;">24 hours max. WhatsApp gets faster replies—we check that constantly. Email gets responses within a business day.</p>
+                </div>
+
+                <div style="padding: 2rem; background: #fafafa; border-radius: 8px; border-left: 4px solid #1565c0;">
+                    <h4 style="color: #1565c0; margin-bottom: 0.8rem;">Does Indiloom charge fees?</h4>
+                    <p style="color: #666;">No. Free for buyers. Free for suppliers too, for now. We make money when partnerships succeed—not from listing fees.</p>
+                </div>
+
+                <div style="padding: 2rem; background: #fafafa; border-radius: 8px; border-left: 4px solid #1565c0;">
+                    <h4 style="color: #1565c0; margin-bottom: 0.8rem;">Do I need to share my company details?</h4>
+                    <p style="color: #666;">We need a valid email and phone to match you with suppliers. Company details—keep them confidential if you want. Suppliers will know it eventually if you proceed, but we won't pressure you.</p>
+                </div>
+
+                <div style="padding: 2rem; background: #fafafa; border-radius: 8px; border-left: 4px solid #1565c0;">
+                    <h4 style="color: #1565c0; margin-bottom: 0.8rem;">What if I'm just researching?</h4>
+                    <p style="color: #666;">Research away. Submit an inquiry with your questions. We'll give you market insights, supplier capabilities, pricing ranges—even if you're not ready to order yet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="for-buyers.html">For Buyers</a>
+                <a href="for-suppliers.html">For Suppliers</a>
+                <a href="products.html">Products</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-divider">
+                <p class="footer-text">© 2026 Indiloom. Direct sourcing from Panipat's verified home textile manufacturers.</p>
+                <p class="footer-contact">info@indiloom.com | +91 98765 43210</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="form-handler.js"></script>
+</body>
+</html>
