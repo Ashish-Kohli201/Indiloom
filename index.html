@@ -414,8 +414,9 @@
 
         .suppliers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
+            grid-auto-rows: 1fr;
         }
 
         .supplier-card {
@@ -424,6 +425,9 @@
             border-radius: 4px;
             padding: 1.5rem;
             transition: box-shadow 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .supplier-card:hover {
@@ -454,12 +458,21 @@
             margin-bottom: 1rem;
         }
 
+        .supplier-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex: 1;
+            line-height: 1.5;
+        }
+
         .supplier-stats {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #e0e0e0;
+            flex: 1;
         }
 
         .supplier-stat {
@@ -483,6 +496,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.8rem;
+            margin-top: auto;
         }
 
         /* HOW IT WORKS */
@@ -810,6 +824,7 @@
             <li><a href="about-us.html">About</a></li>
             <li><a href="for-buyers.html">For Buyers</a></li>
             <li><a href="for-suppliers.html">For Suppliers</a></li>
+            <li><a href="admin.html" style="color: #666; font-size: 0.85rem;">⚙️ Admin</a></li>
             <!-- <li><a href="contact.html">Contact</a></li> -->
             <li><button class="navbar-cta" onclick="window.location.href='contact.html'">Request Quote</button></li>
         </ul>
@@ -921,87 +936,8 @@
                 <p>Verified manufacturers from Panipat's textile hub</p>
             </div>
 
-            <div class="suppliers-grid">
-                <div class="supplier-card">
-                    <div class="supplier-header">
-                        <div class="supplier-name">Panipat Textiles Co.</div>
-                        <div class="supplier-location">📍 Panipat, Haryana</div>
-                    </div>
-                    <div class="supplier-spec">Bedding Specialist • Established 2008</div>
-                    <div class="supplier-stats">
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">180+</div>
-                            <div class="supplier-stat-label">Products</div>
-                        </div>
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">45</div>
-                            <div class="supplier-stat-label">Clients</div>
-                        </div>
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">ISO 9001</div>
-                            <div class="supplier-stat-label">Certified</div>
-                        </div>
-                    </div>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Specialized in premium cotton bedding sheets and duvet covers. Serves retail brands and exporters across 12 countries.</p>
-                    <div class="supplier-actions">
-                        <button class="btn-secondary">View Store</button>
-                        <button class="btn-primary">Contact</button>
-                    </div>
-                </div>
-
-                <div class="supplier-card">
-                    <div class="supplier-header">
-                        <div class="supplier-name">Mill Direct Manufacturing</div>
-                        <div class="supplier-location">📍 Panipat, Haryana</div>
-                    </div>
-                    <div class="supplier-spec">Multi-Category • Established 2005</div>
-                    <div class="supplier-stats">
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">260+</div>
-                            <div class="supplier-stat-label">Products</div>
-                        </div>
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">62</div>
-                            <div class="supplier-stat-label">Clients</div>
-                        </div>
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">ISO 9001</div>
-                            <div class="supplier-stat-label">Certified</div>
-                        </div>
-                    </div>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Full-service textile manufacturer covering bedding, curtains, cushions, and table linens. Competitive pricing, fast turnaround.</p>
-                    <div class="supplier-actions">
-                        <button class="btn-secondary">View Store</button>
-                        <button class="btn-primary">Contact</button>
-                    </div>
-                </div>
-
-                <div class="supplier-card">
-                    <div class="supplier-header">
-                        <div class="supplier-name">Imperial Towel Mills</div>
-                        <div class="supplier-location">📍 Panipat, Haryana</div>
-                    </div>
-                    <div class="supplier-spec">Towel Specialist • Established 2012</div>
-                    <div class="supplier-stats">
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">95+</div>
-                            <div class="supplier-stat-label">Products</div>
-                        </div>
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">28</div>
-                            <div class="supplier-stat-label">Clients</div>
-                        </div>
-                        <div class="supplier-stat">
-                            <div class="supplier-stat-value">ISO 9001</div>
-                            <div class="supplier-stat-label">Certified</div>
-                        </div>
-                    </div>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Premium towel manufacturer with focus on zero-twist and luxury segments. Hotels and spa chains are key customers.</p>
-                    <div class="supplier-actions">
-                        <button class="btn-secondary">View Store</button>
-                        <button class="btn-primary">Contact</button>
-                    </div>
-                </div>
+            <div class="suppliers-grid" id="suppliersGrid">
+                <!-- Suppliers rendered here by JavaScript -->
             </div>
         </div>
     </section>
@@ -1222,20 +1158,48 @@
     </footer>
 
     <script>
-        // PRODUCT DATABASE
-        const products = [
-            { id: 1, name: "Egyptian Cotton Sheets (400 TC)", category: "Bedding", material: "Cotton", price: 450, supplier: "Panipat Textiles Co.", icon: "🧵" },
-            { id: 2, name: "Sateen Duvet Covers (Solid Color)", category: "Bedding", material: "Cotton", price: 380, supplier: "Mill Direct Manufacturing", icon: "🧵" },
-            { id: 3, name: "Blackout Thermal Curtains", category: "Curtains", material: "Polyester", price: 280, supplier: "Premium Curtain Mills", icon: "🧵" },
-            { id: 4, name: "Velvet Cushion Covers (45cm)", category: "Cushions", material: "Velvet", price: 320, supplier: "Artisan Textiles Panipat", icon: "🧵" },
-            { id: 5, name: "Premium Bath Towels (Zero Twist)", category: "Towels", material: "Cotton", price: 180, supplier: "Imperial Towel Mills", icon: "🧵" },
-            { id: 6, name: "Hand-Woven Kilim Rug (8x10 ft)", category: "Rugs", material: "Wool", price: 2800, supplier: "Heritage Rug Weavers", icon: "🧵" },
-            { id: 7, name: "Jacquard Tablecloths (Damask)", category: "Table Linens", material: "Cotton", price: 420, supplier: "Elegant Table Textiles", icon: "🧵" },
-            { id: 8, name: "Fitted Sheet Set (Deep Pocket)", category: "Bedding", material: "Cotton", price: 520, supplier: "Standard Sheet Manufacturing", icon: "🧵" },
-            { id: 9, name: "Microfiber Pillows (Set of 2)", category: "Bedding", material: "Polyester", price: 250, supplier: "Comfort Home Textiles", icon: "🧵" },
-            { id: 10, name: "Linen Tablecloths (Natural)", category: "Table Linens", material: "Cotton", price: 350, supplier: "Natural Textiles Ltd", icon: "🧵" },
-        ];
+        // INITIALIZE DATA FROM LOCALSTORAGE
+        function initializeData() {
+            if (!localStorage.getItem('indiloom_products')) {
+                const defaultProducts = [
+                    { id: 1, name: "Egyptian Cotton Sheets (400 TC)", category: "Bedding", material: "Cotton", price: 450, supplier: "Panipat Textiles Co.", icon: "🧵" },
+                    { id: 2, name: "Sateen Duvet Covers (Solid Color)", category: "Bedding", material: "Cotton", price: 380, supplier: "Mill Direct Manufacturing", icon: "🧵" },
+                    { id: 3, name: "Blackout Thermal Curtains", category: "Curtains", material: "Polyester", price: 280, supplier: "Premium Curtain Mills", icon: "🧵" },
+                    { id: 4, name: "Velvet Cushion Covers (45cm)", category: "Cushions", material: "Velvet", price: 320, supplier: "Artisan Textiles Panipat", icon: "🧵" },
+                    { id: 5, name: "Premium Bath Towels (Zero Twist)", category: "Towels", material: "Cotton", price: 180, supplier: "Imperial Towel Mills", icon: "🧵" },
+                    { id: 6, name: "Hand-Woven Kilim Rug (8x10 ft)", category: "Rugs", material: "Wool", price: 2800, supplier: "Heritage Rug Weavers", icon: "🧵" },
+                    { id: 7, name: "Jacquard Tablecloths (Damask)", category: "Table Linens", material: "Cotton", price: 420, supplier: "Elegant Table Textiles", icon: "🧵" },
+                    { id: 8, name: "Fitted Sheet Set (Deep Pocket)", category: "Bedding", material: "Cotton", price: 520, supplier: "Standard Sheet Manufacturing", icon: "🧵" },
+                    { id: 9, name: "Microfiber Pillows (Set of 2)", category: "Bedding", material: "Polyester", price: 250, supplier: "Comfort Home Textiles", icon: "🧵" },
+                    { id: 10, name: "Linen Tablecloths (Natural)", category: "Table Linens", material: "Cotton", price: 350, supplier: "Natural Textiles Ltd", icon: "🧵" },
+                ];
+                localStorage.setItem('indiloom_products', JSON.stringify(defaultProducts));
+            }
+            
+            if (!localStorage.getItem('indiloom_suppliers')) {
+                const defaultSuppliers = [
+                    { id: 1, name: "Panipat Textiles Co.", location: "Panipat, Haryana", spec: "Bedding Specialist • Established 2008", products: "180+", clients: "45", certified: "ISO 9001", description: "Specialized in premium cotton bedding sheets and duvet covers. Serves retail brands and exporters across 12 countries." },
+                    { id: 2, name: "Mill Direct Manufacturing", location: "Panipat, Haryana", spec: "Multi-Category • Established 2005", products: "260+", clients: "62", certified: "ISO 9001", description: "Full-service textile manufacturer covering bedding, curtains, cushions, and table linens. Competitive pricing, fast turnaround." },
+                    { id: 3, name: "Imperial Towel Mills", location: "Panipat, Haryana", spec: "Towel Specialist • Established 2012", products: "95+", clients: "28", certified: "ISO 9001", description: "Premium towel manufacturer with focus on zero-twist and luxury segments. Hotels and spa chains are key customers." },
+                ];
+                localStorage.setItem('indiloom_suppliers', JSON.stringify(defaultSuppliers));
+            }
+        }
 
+        initializeData();
+
+        // GET PRODUCTS FROM LOCALSTORAGE
+        function getProducts() {
+            return JSON.parse(localStorage.getItem('indiloom_products')) || [];
+        }
+
+        // GET SUPPLIERS FROM LOCALSTORAGE
+        function getSuppliers() {
+            return JSON.parse(localStorage.getItem('indiloom_suppliers')) || [];
+        }
+
+        // PRODUCT DATABASE
+        let products = getProducts();
         let filteredProducts = [...products];
 
         function updateFilters() {
@@ -1311,6 +1275,45 @@
             `).join('');
         }
 
+        function renderSuppliers() {
+            const suppliers = getSuppliers();
+            const grid = document.getElementById('suppliersGrid');
+
+            if (suppliers.length === 0) {
+                grid.innerHTML = '<div class="no-results" style="grid-column: 1 / -1; padding: 2rem;">No suppliers available yet.</div>';
+                return;
+            }
+
+            grid.innerHTML = suppliers.map(supplier => `
+                <div class="supplier-card">
+                    <div class="supplier-header">
+                        <div class="supplier-name">${supplier.name}</div>
+                        <div class="supplier-location">📍 ${supplier.location}</div>
+                    </div>
+                    <div class="supplier-spec">${supplier.spec}</div>
+                    <div class="supplier-stats">
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">${supplier.products}</div>
+                            <div class="supplier-stat-label">Products</div>
+                        </div>
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">${supplier.clients}</div>
+                            <div class="supplier-stat-label">Clients</div>
+                        </div>
+                        <div class="supplier-stat">
+                            <div class="supplier-stat-value">${supplier.certified}</div>
+                            <div class="supplier-stat-label">Certified</div>
+                        </div>
+                    </div>
+                    <div class="supplier-description">${supplier.description}</div>
+                    <div class="supplier-actions">
+                        <button class="btn-secondary">View Store</button>
+                        <button class="btn-primary">Contact</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         function sortProducts(method) {
             const sorted = [...filteredProducts];
             switch(method) {
@@ -1368,6 +1371,7 @@
 
         // Initial render
         renderProducts();
+        renderSuppliers();
     </script>
 </body>
 </html>
