@@ -3,8 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manvay Textiles - Smarter Sourcing. Stronger Connections.</title>
+    <title>Manvay Textiles - Textile Sourcing. Simplified.</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero Section Enhancements */
+        .hero-simple {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #F7F3EC 0%, #E8DFD2 100%);
+            text-align: center;
+        }
+
+        .hero-simple-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-simple-content h1 {
+            font-size: 3rem;
+            color: #1E1D1B;
+            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+        }
+
+        .hero-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .benefit-item {
+            font-size: 0.95rem;
+            color: #1E1D1B;
+            font-weight: 500;
+        }
+
+        .benefit-item::before {
+            content: "✦ ";
+            color: #B58A47;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #F7F3EC;
+            padding: 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(181, 138, 71, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(181, 138, 71, 0.2);
+        }
+
+        .service-number {
+            font-size: 3rem;
+            color: #B58A47;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: #1E1D1B;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .service-checklist {
+            list-style: none;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .service-checklist li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #B58A47;
+            font-weight: bold;
+        }
+
+        .service-cta {
+            margin-top: 1.5rem;
+            display: inline-block;
+        }
+
+        .service-cta a {
+            color: #B58A47;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .service-cta a:hover {
+            color: #1D4A43;
+            gap: 1rem;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1D4A43 0%, #14342F 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .trust-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .trust-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #B58A47;
+            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .trust-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .trust-logo-item {
+            font-size: 0.85rem;
+            color: #B58A47;
+            font-weight: 600;
+        }
+
+        /* Why Choose Section */
+        .why-choose-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .why-choose-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-item {
+            text-align: center;
+            padding: 2rem;
+            background: #F7F3EC;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(181, 138, 71, 0.1);
+        }
+
+        .why-item h3 {
+            font-size: 1.1rem;
+            color: #1E1D1B;
+            margin-bottom: 0.8rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .why-item p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .why-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            padding: 5rem 2rem;
+            background: #F7F3EC;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(181, 138, 71, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #1E1D1B;
+            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .form-container .section-subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Location Grid */
+        .locations-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .locations-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .location-link {
+            padding: 1rem;
+            text-align: center;
+            background: #F7F3EC;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #1E1D1B;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .location-link:hover {
+            background: #B58A47;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-floating {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s;
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        .whatsapp-floating:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero-simple-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-benefits {
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .trust-number {
+                font-size: 2.5rem;
+            }
+
+            .whatsapp-floating {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- NAVBAR -->
@@ -18,235 +349,171 @@
             <li><a href="for-suppliers.html">For Suppliers</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="admin.html" style="color: #B58A47; font-weight: 600;">⚙️ Admin</a></li>
-            <li><button class="navbar-cta" onclick="window.location.href='contact.html'">Request Sourcing</button></li>
+            <li><a href="https://wa.me/918800554542" class="navbar-cta">WhatsApp</a></li>
         </ul>
     </nav>
 
-    <!-- RIBBON BAR -->
-    <div class="ribbon-bar">
-        India's trusted B2B textile sourcing platform
-    </div>
-
     <!-- HERO SECTION -->
-    <section class="hero">
-        <img src="https://images.unsplash.com/photo-1567427335967-ab20de5df5e6?w=1200&h=800&fit=crop" alt="Textile Manufacturing" class="hero-background">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Smarter sourcing. Stronger connections.</h1>
-            <p>Maximising choice with trustworthy quality and built-in sourcing support.</p>
-            <div class="hero-actions">
-                <button class="btn btn-primary" onclick="document.querySelector('.differentiation').scrollIntoView({behavior: 'smooth'})">Explore Marketplace</button>
-                <button class="btn btn-secondary" onclick="window.location.href='for-suppliers.html'">Are You a Supplier?</button>
+    <section class="hero-simple">
+        <div class="hero-simple-content">
+            <h1>Textile Sourcing. Simplified.</h1>
+            <div class="hero-benefits">
+                <div class="benefit-item">Unmatched Wholesale Price</div>
+                <div class="benefit-item">Customized Design & Printing</div>
+                <div class="benefit-item">Trusted by 500+ Businesses</div>
+            </div>
+            <p style="font-size: 1rem; color: #666; margin-bottom: 2rem;">We deliver fully customised home textiles at low MOQ to brands globally.</p>
+            <div class="hero-cta-group">
+                <button class="btn btn-primary" onclick="document.querySelector('.services-section').scrollIntoView({behavior: 'smooth'})">Explore Services</button>
+                <a href="https://wa.me/918800554542" class="btn btn-secondary" style="text-decoration: none; display: inline-block;">Chat Now</a>
             </div>
         </div>
     </section>
 
-    <!-- DIFFERENTIATION TABLE -->
-    <section class="differentiation">
-        <div class="diff-container">
-            <h2 class="diff-title">Why Choose Manvay?</h2>
-            <table class="diff-table">
-                <thead>
-                    <tr>
-                        <th>Capability</th>
-                        <th>You</th>
-                        <th>Agents</th>
-                        <th>Buying Offices</th>
-                        <th>Platforms</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="text-align: left;"><strong>Supplier choice & reach</strong></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="tick">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><strong>Specialisation (textiles focus)</strong></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><strong>Support (POC, sourcing help)</strong></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><strong>Quality & compliance</strong></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><strong>Transparency & comparison</strong></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="cross">✗</span></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;"><strong>Dependency / lock-in</strong></td>
-                        <td><span class="tick">✓</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="cross">✗</span></td>
-                        <td><span class="tick">✓</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+    <!-- SERVICES SECTION -->
+    <section class="services-section">
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-number">01</div>
+                <h3>Discover & Buy Fabrics</h3>
+                <p>Select from pre-sourced and certified textiles in over 300 varieties of cotton, silk, linen, and polyester.</p>
+                <ul class="service-checklist">
+                    <li>Premium quality fabrics</li>
+                    <li>Competitive pricing</li>
+                    <li>Fast delivery</li>
+                </ul>
+                <div class="service-cta">
+                    <a href="https://wa.me/918800554542">Chat Now →</a>
+                </div>
+            </div>
 
-    <!-- VALUE CHAIN SECTION -->
-    <section class="value-chain">
-        <div class="value-chain-container">
-            <h2 class="value-chain-title">How It Actually Works</h2>
-            <p class="value-chain-subtitle">A streamlined process for quality textile sourcing</p>
-            
-            <div class="chain-flow">
-                <div class="chain-step">
-                    <div class="chain-step-number">1</div>
-                    <h3>Submit Specs</h3>
-                    <p>Product type, quantities, quality needs, budget, timeline. The more detail, the better we match.</p>
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-number">02</div>
+                <h3>Custom Design & Printing</h3>
+                <p>Choose from our catalogue of thousands of custom prints or get your own design customized. See prints on life-like models.</p>
+                <ul class="service-checklist">
+                    <li>Digital printing</li>
+                    <li>Screen printing</li>
+                    <li>Block printing</li>
+                </ul>
+                <div class="service-cta">
+                    <a href="https://wa.me/918800554542">Chat Now →</a>
                 </div>
-                <div class="chain-arrow">→</div>
-                <div class="chain-step">
-                    <div class="chain-step-number">2</div>
-                    <h3>We Filter & Match</h3>
-                    <p>We identify 3-5 suppliers from our network who match your needs. Each can actually do your order.</p>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-number">03</div>
+                <h3>Dyeing & Coloring</h3>
+                <p>All services under one roof with our proprietary quality process. From concept to delivery, we handle everything.</p>
+                <ul class="service-checklist">
+                    <li>Jigger dyeing</li>
+                    <li>Mill dyeing</li>
+                    <li>In-house inspection</li>
+                </ul>
+                <div class="service-cta">
+                    <a href="https://wa.me/918800554542">Chat Now →</a>
                 </div>
-                <div class="chain-arrow">→</div>
-                <div class="chain-step">
-                    <div class="chain-step-number">3</div>
-                    <h3>Get Quotes & Samples</h3>
-                    <p>Mills send you samples and pricing directly. You compare. No middleman markup.</p>
-                </div>
-                <div class="chain-arrow">→</div>
-                <div class="chain-step">
-                    <div class="chain-step-number">4</div>
-                    <h3>Close the Deal</h3>
-                    <p>Set quality standards, payment terms, delivery timelines. We ensure both sides stick to agreement.</p>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card">
+                <div class="service-number">04</div>
+                <h3>Quality Testing</h3>
+                <p>Our in-house testing unit analyses 20+ types of defects and conducts shrinkage and color fastness testing.</p>
+                <ul class="service-checklist">
+                    <li>Defect analysis</li>
+                    <li>Fastness testing</li>
+                    <li>Quality assurance</li>
+                </ul>
+                <div class="service-cta">
+                    <a href="https://wa.me/918800554542">Chat Now →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRODUCT CATEGORIES -->
-    <section class="products">
-        <div style="max-width: 1000px; margin: 0 auto;">
-            <h2 class="section-title">Product Categories</h2>
-            <p class="section-subtitle">We source verified manufacturers across all major home textile categories</p>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1598299006405-2c4a9a4d2cfb?w=600&h=300&fit=crop" alt="Bedding">
-                    </div>
-                    <div class="product-content">
-                        <h3>Bedding</h3>
-                        <p>Bed sheets, pillowcases, duvet covers, and quilts from certified manufacturers with global quality standards.</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=300&fit=crop" alt="Curtains">
-                    </div>
-                    <div class="product-content">
-                        <h3>Curtains</h3>
-                        <p>Sheer and blackout curtains, drapes, and custom window treatments designed for modern interiors.</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=300&fit=crop" alt="Cushions">
-                    </div>
-                    <div class="product-content">
-                        <h3>Cushions</h3>
-                        <p>Decorative and functional cushions, throws, and upholstery fabrics in various designs and materials.</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1578149102327-08754c1ce35d?w=600&h=300&fit=crop" alt="Rugs">
-                    </div>
-                    <div class="product-content">
-                        <h3>Rugs</h3>
-                        <p>Hand-woven and machine-made rugs in traditional and contemporary styles for every space.</p>
-                    </div>
-                </div>
+    <!-- TRUST SECTION -->
+    <section class="trust-section">
+        <div class="trust-content">
+            <div class="trust-number">500+</div>
+            <div class="trust-text">Small to large fashion brands and manufacturers trust Manvay Textiles across the globe</div>
+            <div class="trust-logos">
+                <div class="trust-logo-item">Tata Fashion</div>
+                <div class="trust-logo-item">Reliance Brands</div>
+                <div class="trust-logo-item">Iconic Fashion</div>
+                <div class="trust-logo-item">Premium Garments</div>
+                <div class="trust-logo-item">Global Exporters</div>
             </div>
         </div>
     </section>
 
-    <!-- FOR BUYERS SECTION -->
-    <section class="for-buyers">
-        <div class="for-buyers-container">
-            <div class="section-content">
-                <div class="section-text">
-                    <h2>For Buyers: Your Real Problems</h2>
-                    <p style="color: #555; margin-bottom: 1.5rem;">You need to source textiles. But mills don't answer cold emails, samples arrive with defects, and prices shift based on who's negotiating.</p>
-                    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; font-size: 1rem; color: #1E1D1B;">What you're probably doing now:</h3>
-                    <ul>
-                        <li>Calling mills individually, hoping someone picks up</li>
-                        <li>Dealing with middlemen who take 15-20% margin</li>
-                        <li>Negotiating pricing separately with each mill</li>
-                        <li>Waiting 2-3 months just to figure out who's legit</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="window.location.href='for-buyers.html'" style="margin-top: 1rem;">Learn More</button>
-                </div>
-                <div class="section-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Business Meeting">
-                </div>
+    <!-- WHY CHOOSE SECTION -->
+    <section class="why-choose-section">
+        <div style="max-width: 1000px; margin: 0 auto; text-align: center; margin-bottom: 3rem;">
+            <h2 class="section-title" style="color: #1E1D1B;">Why Top Fashion Brands Choose Manvay</h2>
+            <p class="section-subtitle">We take complete ownership of creating textiles. Concept to delivery.</p>
+        </div>
+        <div class="why-choose-grid">
+            <div class="why-item">
+                <div class="why-icon">⏰</div>
+                <h3>Ontime Delivery</h3>
+                <p>Tech-enabled platform ensures exceptional support and delivery transparency at every step.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">✓</div>
+                <h3>100% Authentic</h3>
+                <p>First in industry spec transparency. Count, construction, weave details. You pay for what you get.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">💰</div>
+                <h3>Lowest MOQ & Pricing</h3>
+                <p>Our integrated supply chain offers lowest pricing at lowest MOQs in the industry.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">👥</div>
+                <h3>Your Dedicated Team</h3>
+                <p>We work with you like your in-house team. Industry's best expertise with personal attention.</p>
             </div>
         </div>
     </section>
 
-    <!-- FOR SUPPLIERS SECTION -->
-    <section class="for-suppliers">
-        <div class="for-suppliers-container">
-            <div class="section-content-reverse">
-                <div class="section-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Manufacturing">
-                </div>
-                <div class="section-text">
-                    <h2>For Mills & Suppliers: Direct Access</h2>
-                    <p style="color: #555; margin-bottom: 1.5rem;">All your competitors are sitting in the same room—literally. But buyers don't know you exist.</p>
-                    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; font-size: 1rem; color: #1E1D1B;">Your current reality:</h3>
-                    <ul>
-                        <li>Middlemen agents take 10-20% margin just for a buyer introduction</li>
-                        <li>Buyers have no idea about your quality or that you exist</li>
-                        <li>You're competing on price alone because there's no way to show capability</li>
-                        <li>Seasonal demand means uncertain order flow</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="window.location.href='for-suppliers.html'" style="margin-top: 1rem;">See How To Get Direct Buyers</button>
-                </div>
-            </div>
+    <!-- CONTACT FORM SECTION -->
+    <section class="contact-form-section">
+        <div class="form-container">
+            <h2>Get Expert Consultation</h2>
+            <p class="section-subtitle">Our textile experts will contact you within 24 hours</p>
+            <form id="contactForm" class="form-group" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <input type="text" placeholder="Your Name" required style="padding: 0.9rem; border: 2px solid #E8DFD2; border-radius: 2px; font-family: 'Inter', sans-serif;">
+                <input type="email" placeholder="Your Email" required style="padding: 0.9rem; border: 2px solid #E8DFD2; border-radius: 2px; font-family: 'Inter', sans-serif;">
+                <input type="tel" placeholder="Contact Number" required style="padding: 0.9rem; border: 2px solid #E8DFD2; border-radius: 2px; font-family: 'Inter', sans-serif;">
+                <textarea placeholder="Tell us about your textile needs..." rows="4" required style="padding: 0.9rem; border: 2px solid #E8DFD2; border-radius: 2px; font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
         </div>
     </section>
 
-    <!-- SUPPLIERS SECTION -->
-    <section class="suppliers">
-        <div class="suppliers-container">
-            <h2 class="section-title">Featured Suppliers</h2>
-            <p class="section-subtitle">Verified manufacturers we trust</p>
-            <div class="suppliers-grid" id="suppliersGrid">
-                <!-- Suppliers loaded from localStorage -->
-            </div>
+    <!-- LOCATIONS SECTION -->
+    <section class="locations-section">
+        <div style="max-width: 1000px; margin: 0 auto; text-align: center; margin-bottom: 3rem;">
+            <h2 class="section-title" style="color: #1E1D1B;">Textile Sourcing Across India</h2>
+            <p class="section-subtitle">Serving manufacturers in cities across India and globally</p>
         </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section class="about">
-        <div class="about-container">
-            <h2 class="section-title">Why We Built This</h2>
-            <p>Panipat manufactures 60% of India's home textiles. But that doesn't mean it's easy to find a good supplier. Retailers, exporters, and interior firms spend weeks cold-calling mills, dealing with middlemen, and hoping they don't get scammed.</p>
-            <p>Factories have their own problem: sporadic demand. One big order one year, nothing the next. Most compete only on price. Quality gets ignored.</p>
-            <p><span class="about-highlight">We believed there had to be a better way.</span> Connect serious buyers directly with serious suppliers. Cut the BS. Let quality and reliability be the differentiator, not who has the best salesman.</p>
+        <div class="locations-grid">
+            <a href="#" class="location-link">Panipat Textiles</a>
+            <a href="#" class="location-link">Delhi Suppliers</a>
+            <a href="#" class="location-link">Mumbai Manufacturers</a>
+            <a href="#" class="location-link">Bangalore Exports</a>
+            <a href="#" class="location-link">Surat Textiles</a>
+            <a href="#" class="location-link">Jaipur Fabrics</a>
+            <a href="#" class="location-link">Ludhiana Mills</a>
+            <a href="#" class="location-link">Tiruppur Knitwear</a>
+            <a href="#" class="location-link">Chennai Textiles</a>
+            <a href="#" class="location-link">Global Export</a>
+            <a href="#" class="location-link">UK Suppliers</a>
+            <a href="#" class="location-link">USA Distributors</a>
         </div>
     </section>
 
@@ -259,61 +526,30 @@
                 <a href="for-buyers.html">For Buyers</a>
                 <a href="for-suppliers.html">For Suppliers</a>
                 <a href="contact.html">Contact</a>
+                <a href="admin.html">Admin</a>
             </div>
             <div class="footer-divider">
                 <p class="footer-text">© 2026 Manvay Textiles. Direct sourcing from India's verified home textile manufacturers.</p>
-                <p class="footer-contact">info@manvaytextiles.com | +91 98765 43210</p>
+                <p class="footer-contact">📧 info@manvaytextiles.com | 📱 +91 98765 43210 | 💬 <a href="https://wa.me/918800554542" style="color: #B58A47;">WhatsApp</a></p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Load suppliers from localStorage
-        function loadSuppliers() {
-            const suppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
-            const suppliersGrid = document.getElementById('suppliersGrid');
-            
-            if (suppliers.length === 0) {
-                // Show default suppliers if none exist
-                suppliersGrid.innerHTML = `
-                    <div class="supplier-card">
-                        <div class="supplier-name">Panipat Textiles Co.</div>
-                        <div class="supplier-stat">📦 250+ Orders Fulfilled</div>
-                        <div class="supplier-stat">⭐ 4.8 Rating</div>
-                        <div class="supplier-stat">🎯 Bedding, Curtains, Cushions</div>
-                    </div>
-                    <div class="supplier-card">
-                        <div class="supplier-name">Precision Fabrics Ltd.</div>
-                        <div class="supplier-stat">📦 180+ Orders Fulfilled</div>
-                        <div class="supplier-stat">⭐ 4.7 Rating</div>
-                        <div class="supplier-stat">🎯 Premium Bedding, Linens</div>
-                    </div>
-                    <div class="supplier-card">
-                        <div class="supplier-name">Textile Innovations Inc.</div>
-                        <div class="supplier-stat">📦 320+ Orders Fulfilled</div>
-                        <div class="supplier-stat">⭐ 4.9 Rating</div>
-                        <div class="supplier-stat">🎯 All Categories</div>
-                    </div>
-                `;
-            } else {
-                suppliersGrid.innerHTML = suppliers.map(supplier => `
-                    <div class="supplier-card">
-                        <div class="supplier-name">${supplier.name}</div>
-                        <div class="supplier-stat">📦 ${supplier.orders}+ Orders Fulfilled</div>
-                        <div class="supplier-stat">⭐ ${supplier.rating} Rating</div>
-                        <div class="supplier-stat">🎯 ${supplier.products}</div>
-                    </div>
-                `).join('');
-            }
-        }
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918800554542" class="whatsapp-floating" title="Chat on WhatsApp">💬</a>
 
+    <script>
         // Mobile menu toggle
         document.getElementById('mobileMenuToggle').addEventListener('click', function() {
             document.getElementById('navbarMenu').classList.toggle('active');
         });
 
-        // Load suppliers on page load
-        window.addEventListener('DOMContentLoaded', loadSuppliers);
+        // Contact form handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! Our team will contact you within 24 hours.');
+            this.reset();
+        });
     </script>
 </body>
 </html>
