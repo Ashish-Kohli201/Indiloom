@@ -3,1025 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indiloom - Admin Panel</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #111;
-            line-height: 1.6;
-        }
-
-        /* LOGIN PAGE */
-        .login-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: #f9f9f9;
-        }
-
-        .login-box {
-            background: white;
-            padding: 3rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .login-box h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            color: #1565c0;
-        }
-
-        .login-box p {
-            color: #666;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-family: inherit;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #1565c0;
-            box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.1);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background: #1565c0;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-            font-size: 0.95rem;
-        }
-
-        .login-btn:hover {
-            background: #0d47a1;
-        }
-
-        .error-message {
-            color: #d32f2f;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            padding: 0.8rem;
-            background: #ffebee;
-            border-radius: 4px;
-            display: none;
-        }
-
-        /* ADMIN DASHBOARD */
-        .admin-container {
-            display: none;
-        }
-
-        .admin-navbar {
-            background: #1565c0;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .admin-navbar h1 {
-            font-size: 1.3rem;
-        }
-
-        .logout-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-
-        .logout-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .admin-wrapper {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            min-height: calc(100vh - 70px);
-        }
-
-        .admin-sidebar {
-            background: white;
-            border-right: 1px solid #e0e0e0;
-            padding: 1rem;
-        }
-
-        .admin-sidebar-item {
-            display: block;
-            padding: 0.8rem 1rem;
-            margin-bottom: 0.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            color: #111;
-            font-size: 0.9rem;
-            border-left: 3px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .admin-sidebar-item:hover {
-            background: #f0f5ff;
-            border-left-color: #1565c0;
-        }
-
-        .admin-sidebar-item.active {
-            background: #f0f5ff;
-            border-left-color: #1565c0;
-            font-weight: 600;
-        }
-
-        .admin-content {
-            padding: 2rem;
-            background: #f5f5f5;
-            overflow-y: auto;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #111;
-        }
-
-        .add-new-btn {
-            background: #1565c0;
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            transition: background 0.2s;
-        }
-
-        .add-new-btn:hover {
-            background: #0d47a1;
-        }
-
-        /* FORM MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            overflow: auto;
-        }
-
-        .modal.active {
-            display: block;
-        }
-
-        .modal-content {
-            background: white;
-            margin: 5% auto;
-            padding: 2rem;
-            border-radius: 4px;
-            width: 90%;
-            max-width: 600px;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h2 {
-            font-size: 1.3rem;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #999;
-        }
-
-        .close-modal:hover {
-            color: #111;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-grid.full {
-            grid-template-columns: 1fr;
-        }
-
-        .form-group textarea {
-            width: 100%;
-            min-height: 100px;
-            padding: 0.8rem;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 0.9rem;
-            resize: vertical;
-        }
-
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #1565c0;
-            box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.1);
-        }
-
-        .form-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .btn-primary {
-            background: #1565c0;
-            color: white;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .btn-primary:hover {
-            background: #0d47a1;
-        }
-
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #111;
-            border: 1px solid #d0d0d0;
-            padding: 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-
-        /* DATA TABLE */
-        .data-table {
-            background: white;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table th {
-            background: #f5f5f5;
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border-bottom: 1px solid #e0e0e0;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 0.9rem;
-        }
-
-        table tr:hover {
-            background: #f9f9f9;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn-edit {
-            background: #2196F3;
-            color: white;
-            border: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: background 0.2s;
-        }
-
-        .btn-edit:hover {
-            background: #1976D2;
-        }
-
-        .btn-delete {
-            background: #d32f2f;
-            color: white;
-            border: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: background 0.2s;
-        }
-
-        .btn-delete:hover {
-            background: #b71c1c;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: #999;
-        }
-
-        .empty-state p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1565c0;
-        }
-
-        .success-message {
-            background: #4caf50;
-            color: white;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .admin-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .admin-sidebar {
-                display: none;
-            }
-
-            .modal-content {
-                margin: 20% auto;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Admin Panel - Manvay Textiles</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- LOGIN PAGE -->
-    <div id="loginPage">
-        <div class="login-container">
-            <div class="login-box">
-                <h1>🔐 Admin Panel</h1>
-                <p>Indiloom Marketplace Management</p>
-                <div class="error-message" id="errorMessage"></div>
-                <form onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="adminPassword" placeholder="Enter admin password" required>
-                    </div>
-                    <button type="submit" class="login-btn">Login</button>
-                </form>
-                <p style="margin-top: 2rem; text-align: center; color: #999; font-size: 0.85rem;">
-                    Default password: <strong>admin123</strong>
-                </p>
-            </div>
-        </div>
-    </div>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Manvay Textiles</a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="for-buyers.html">For Buyers</a></li>
+            <li><a href="for-suppliers.html">For Suppliers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html" style="color: #B58A47; font-weight: 600;">⚙️ Admin</a></li>
+            <li><button class="navbar-cta" onclick="window.location.href='contact.html'">Request Sourcing</button></li>
+        </ul>
+    </nav>
 
-    <!-- ADMIN DASHBOARD -->
-    <div id="adminContainer" class="admin-container">
-        <!-- NAVBAR -->
-        <div class="admin-navbar">
-            <h1>📊 Indiloom Admin Dashboard</h1>
-            <button class="logout-btn" onclick="handleLogout()">Logout</button>
-        </div>
-
-        <div class="admin-wrapper">
-            <!-- SIDEBAR -->
-            <div class="admin-sidebar">
-                <a class="admin-sidebar-item active" onclick="showSection('dashboard', this)">Dashboard</a>
-                <a class="admin-sidebar-item" onclick="showSection('products', this)">Products</a>
-                <a class="admin-sidebar-item" onclick="showSection('suppliers', this)">Suppliers</a>
-            </div>
-
-            <!-- CONTENT -->
-            <div class="admin-content">
-                <div class="success-message" id="successMessage"></div>
-
-                <!-- DASHBOARD SECTION -->
-                <div id="dashboard" class="section active">
-                    <h2 class="section-title">Dashboard</h2>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-label">Total Products</div>
-                            <div class="stat-value" id="totalProducts">0</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-label">Total Suppliers</div>
-                            <div class="stat-value" id="totalSuppliers">0</div>
-                        </div>
-                    </div>
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="contact">
+        <div class="contact-container">
+            <h2>Admin Panel</h2>
+            <p class="section-subtitle">Secure Login</p>
+            <form id="loginForm" class="form-section" style="max-width: 400px;">
+                <div class="form-group">
+                    <label for="adminUsername">Username</label>
+                    <input type="text" id="adminUsername" placeholder="Enter username" required>
                 </div>
-
-                <!-- PRODUCTS SECTION -->
-                <div id="products" class="section">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                        <h2 class="section-title" style="margin: 0;">Products</h2>
-                        <button class="add-new-btn" onclick="openProductForm()">+ Add Product</button>
-                    </div>
-
-                    <div class="data-table">
-                        <div class="table-responsive">
-                            <table id="productsTable">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Category</th>
-                                        <th>Material</th>
-                                        <th>Price</th>
-                                        <th>Supplier</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="productsTableBody">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="empty-state" id="productsEmpty" style="display: none;">
-                        <p>No products yet. Add your first product to get started.</p>
-                    </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter password" required>
                 </div>
-
-                <!-- SUPPLIERS SECTION -->
-                <div id="suppliers" class="section">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                        <h2 class="section-title" style="margin: 0;">Suppliers</h2>
-                        <button class="add-new-btn" onclick="openSupplierForm()">+ Add Supplier</button>
-                    </div>
-
-                    <div class="data-table">
-                        <div class="table-responsive">
-                            <table id="suppliersTable">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Location</th>
-                                        <th>Specialization</th>
-                                        <th>Products</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="suppliersTableBody">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="empty-state" id="suppliersEmpty" style="display: none;">
-                        <p>No suppliers yet. Add your first supplier to get started.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PRODUCT FORM MODAL -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="productModalTitle">Add New Product</h2>
-                <button class="close-modal" onclick="closeProductForm()">✕</button>
-            </div>
-            <form onsubmit="handleProductSubmit(event)">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Product Name *</label>
-                        <input type="text" id="productName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Category *</label>
-                        <select id="productCategory" required>
-                            <option value="">Select Category</option>
-                            <option value="Bedding">Bedding</option>
-                            <option value="Curtains">Curtains</option>
-                            <option value="Cushions">Cushions</option>
-                            <option value="Towels">Towels</option>
-                            <option value="Rugs">Rugs</option>
-                            <option value="Table Linens">Table Linens</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Material *</label>
-                        <select id="productMaterial" required>
-                            <option value="">Select Material</option>
-                            <option value="Cotton">Cotton</option>
-                            <option value="Polyester">Polyester</option>
-                            <option value="Wool">Wool</option>
-                            <option value="Velvet">Velvet</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Price (₹) *</label>
-                        <input type="number" id="productPrice" min="0" required>
-                    </div>
-                </div>
-
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label>Supplier Name *</label>
-                        <input type="text" id="productSupplier" required>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">Save Product</button>
-                    <button type="button" class="btn-secondary" onclick="closeProductForm()">Cancel</button>
-                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
             </form>
+            <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.9rem;">
+                Default credentials: admin / admin123
+            </p>
         </div>
     </div>
 
-    <!-- SUPPLIER FORM MODAL -->
-    <div id="supplierModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="supplierModalTitle">Add New Supplier</h2>
-                <button class="close-modal" onclick="closeSupplierForm()">✕</button>
+    <!-- ADMIN PANEL (hidden by default) -->
+    <div id="adminPanel" style="display: none;">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1>Manvay Textiles Admin Panel</h1>
+                <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
-            <form onsubmit="handleSupplierSubmit(event)">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Company Name *</label>
-                        <input type="text" id="supplierName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Location *</label>
-                        <input type="text" id="supplierLocation" placeholder="City, State" required>
-                    </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('products')">Products</button>
+                <button class="tab-btn" onclick="switchTab('suppliers')">Suppliers</button>
+            </div>
+
+            <!-- PRODUCTS TAB -->
+            <div id="products" class="tab-content active">
+                <div class="form-section">
+                    <h2>Add New Product</h2>
+                    <form id="productForm">
+                        <div class="form-two-col">
+                            <div class="form-group">
+                                <label for="productName">Product Name</label>
+                                <input type="text" id="productName" placeholder="e.g., Egyptian Cotton Sheets" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productCategory">Category</label>
+                                <select id="productCategory" required>
+                                    <option>Bedding</option>
+                                    <option>Curtains</option>
+                                    <option>Cushions</option>
+                                    <option>Towels</option>
+                                    <option>Rugs</option>
+                                    <option>Tablecloths</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-two-col">
+                            <div class="form-group">
+                                <label for="productMaterial">Material</label>
+                                <select id="productMaterial" required>
+                                    <option>Cotton</option>
+                                    <option>Linen</option>
+                                    <option>Silk</option>
+                                    <option>Polyester</option>
+                                    <option>Wool</option>
+                                    <option>Blend</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice">Price (₹)</label>
+                                <input type="number" id="productPrice" placeholder="e.g., 450" required>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="productSupplier">Supplier Name</label>
+                            <input type="text" id="productSupplier" placeholder="e.g., Panipat Textiles Co." required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Product</button>
+                    </form>
                 </div>
 
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label>Specialization *</label>
-                        <input type="text" id="supplierSpec" placeholder="e.g., Bedding Specialist • Established 2008" required>
-                    </div>
+                <div class="form-section">
+                    <h2>Current Products</h2>
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Material</th>
+                                <th>Price</th>
+                                <th>Supplier</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsList">
+                            <!-- Products will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SUPPLIERS TAB -->
+            <div id="suppliers" class="tab-content">
+                <div class="form-section">
+                    <h2>Add New Supplier</h2>
+                    <form id="supplierForm">
+                        <div class="form-two-col">
+                            <div class="form-group">
+                                <label for="supplierName">Supplier Name</label>
+                                <input type="text" id="supplierName" placeholder="e.g., Panipat Textiles Co." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="supplierProducts">Product Types</label>
+                                <input type="text" id="supplierProducts" placeholder="e.g., Bedding, Curtains" required>
+                            </div>
+                        </div>
+                        <div class="form-two-col">
+                            <div class="form-group">
+                                <label for="supplierOrders">Orders Fulfilled</label>
+                                <input type="number" id="supplierOrders" placeholder="e.g., 250" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="supplierRating">Rating (0-5)</label>
+                                <input type="number" id="supplierRating" placeholder="e.g., 4.8" min="0" max="5" step="0.1" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Supplier</button>
+                    </form>
                 </div>
 
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Products Count *</label>
-                        <input type="text" id="supplierProducts" placeholder="e.g., 180+" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Clients Count *</label>
-                        <input type="text" id="supplierClients" placeholder="e.g., 45" required>
-                    </div>
+                <div class="form-section">
+                    <h2>Current Suppliers</h2>
+                    <table class="suppliers-table">
+                        <thead>
+                            <tr>
+                                <th>Supplier Name</th>
+                                <th>Products</th>
+                                <th>Orders</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="suppliersList">
+                            <!-- Suppliers will be loaded here -->
+                        </tbody>
+                    </table>
                 </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Certification *</label>
-                        <input type="text" id="supplierCertified" placeholder="e.g., ISO 9001" required>
-                    </div>
-                </div>
-
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label>Description *</label>
-                        <textarea id="supplierDescription" required></textarea>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">Save Supplier</button>
-                    <button type="button" class="btn-secondary" onclick="closeSupplierForm()">Cancel</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about-us.html">About</a>
+                <a href="for-buyers.html">For Buyers</a>
+                <a href="for-suppliers.html">For Suppliers</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-divider">
+                <p class="footer-text">© 2026 Manvay Textiles. Direct sourcing from India's verified home textile manufacturers.</p>
+                <p class="footer-contact">info@manvaytextiles.com | +91 98765 43210</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
+        const ADMIN_USERNAME = 'admin';
         const ADMIN_PASSWORD = 'admin123';
-        let isLoggedIn = false;
-        let editingProductId = null;
-        let editingSupplierId = null;
 
-        // LOGIN
-        function handleLogin(event) {
-            event.preventDefault();
+        // Login handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('adminUsername').value;
             const password = document.getElementById('adminPassword').value;
-            const errorMsg = document.getElementById('errorMessage');
 
-            if (password === ADMIN_PASSWORD) {
-                isLoggedIn = true;
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
                 localStorage.setItem('adminLoggedIn', 'true');
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('adminContainer').style.display = 'block';
-                loadDashboard();
+                showAdminPanel();
             } else {
-                errorMsg.textContent = 'Invalid password. Please try again.';
-                errorMsg.style.display = 'block';
-                document.getElementById('adminPassword').value = '';
-            }
-        }
-
-        function handleLogout() {
-            isLoggedIn = false;
-            localStorage.removeItem('adminLoggedIn');
-            document.getElementById('loginPage').style.display = 'block';
-            document.getElementById('adminContainer').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-        }
-
-        // CHECK LOGIN STATUS
-        window.addEventListener('load', () => {
-            if (localStorage.getItem('adminLoggedIn') === 'true') {
-                isLoggedIn = true;
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('adminContainer').style.display = 'block';
-                loadDashboard();
+                alert('Invalid credentials');
             }
         });
 
-        // DASHBOARD
-        function loadDashboard() {
-            const products = JSON.parse(localStorage.getItem('indiloom_products')) || [];
-            const suppliers = JSON.parse(localStorage.getItem('indiloom_suppliers')) || [];
-            document.getElementById('totalProducts').textContent = products.length;
-            document.getElementById('totalSuppliers').textContent = suppliers.length;
-        }
-
-        // SHOW SECTION
-        function showSection(sectionName, element) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.admin-sidebar-item').forEach(i => i.classList.remove('active'));
-
-            // Show selected section
-            document.getElementById(sectionName).classList.add('active');
-            element.classList.add('active');
-
-            if (sectionName === 'products') {
-                loadProducts();
-            } else if (sectionName === 'suppliers') {
-                loadSuppliers();
-            } else if (sectionName === 'dashboard') {
-                loadDashboard();
+        // Check if already logged in
+        function checkLogin() {
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                showAdminPanel();
             }
         }
 
-        // PRODUCT MANAGEMENT
-        function openProductForm(productId = null) {
-            editingProductId = productId;
-            const form = document.getElementById('productModal').querySelector('form');
-            
-            if (productId) {
-                document.getElementById('productModalTitle').textContent = 'Edit Product';
-                const products = JSON.parse(localStorage.getItem('indiloom_products')) || [];
-                const product = products.find(p => p.id === productId);
-                
-                document.getElementById('productName').value = product.name;
-                document.getElementById('productCategory').value = product.category;
-                document.getElementById('productMaterial').value = product.material;
-                document.getElementById('productPrice').value = product.price;
-                document.getElementById('productSupplier').value = product.supplier;
-            } else {
-                document.getElementById('productModalTitle').textContent = 'Add New Product';
-                form.reset();
-            }
-
-            document.getElementById('productModal').classList.add('active');
+        function showAdminPanel() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadProducts();
+            loadSuppliers();
         }
 
-        function closeProductForm() {
-            document.getElementById('productModal').classList.remove('active');
-            editingProductId = null;
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            document.getElementById('loginScreen').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('loginForm').reset();
         }
 
-        function handleProductSubmit(event) {
-            event.preventDefault();
-            
-            const products = JSON.parse(localStorage.getItem('indiloom_products')) || [];
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // PRODUCTS
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             const product = {
-                id: editingProductId || Math.max(...products.map(p => p.id), 0) + 1,
+                id: Date.now(),
                 name: document.getElementById('productName').value,
                 category: document.getElementById('productCategory').value,
                 material: document.getElementById('productMaterial').value,
-                price: parseInt(document.getElementById('productPrice').value),
-                supplier: document.getElementById('productSupplier').value,
-                icon: '🧵'
+                price: document.getElementById('productPrice').value,
+                supplier: document.getElementById('productSupplier').value
             };
 
-            if (editingProductId) {
-                const index = products.findIndex(p => p.id === editingProductId);
-                products[index] = product;
-                showSuccess('Product updated successfully!');
-            } else {
-                products.push(product);
-                showSuccess('Product added successfully!');
-            }
+            let products = JSON.parse(localStorage.getItem('products')) || [];
+            products.push(product);
+            localStorage.setItem('products', JSON.stringify(products));
 
-            localStorage.setItem('indiloom_products', JSON.stringify(products));
-            closeProductForm();
+            document.getElementById('productForm').reset();
             loadProducts();
-            loadDashboard();
-            
-            // Update main page if open
-            if (window.opener && window.opener.renderProducts) {
-                window.opener.products = products;
-                window.opener.filteredProducts = [...products];
-                window.opener.renderProducts();
-            }
-        }
-
-        function deleteProduct(productId) {
-            if (confirm('Are you sure you want to delete this product?')) {
-                let products = JSON.parse(localStorage.getItem('indiloom_products')) || [];
-                products = products.filter(p => p.id !== productId);
-                localStorage.setItem('indiloom_products', JSON.stringify(products));
-                loadProducts();
-                loadDashboard();
-                showSuccess('Product deleted successfully!');
-                
-                // Update main page
-                if (window.opener && window.opener.renderProducts) {
-                    window.opener.products = products;
-                    window.opener.filteredProducts = [...products];
-                    window.opener.renderProducts();
-                }
-            }
-        }
+            alert('Product added successfully!');
+        });
 
         function loadProducts() {
-            const products = JSON.parse(localStorage.getItem('indiloom_products')) || [];
-            const tbody = document.getElementById('productsTableBody');
-            const emptyState = document.getElementById('productsEmpty');
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const tbody = document.getElementById('productsList');
+            tbody.innerHTML = '';
 
-            if (products.length === 0) {
-                tbody.innerHTML = '';
-                emptyState.style.display = 'block';
-                document.getElementById('productsTable').style.display = 'none';
-                return;
+            products.forEach(product => {
+                const row = `
+                    <tr>
+                        <td>${product.name}</td>
+                        <td>${product.category}</td>
+                        <td>${product.material}</td>
+                        <td>₹${product.price}</td>
+                        <td>${product.supplier}</td>
+                        <td>
+                            <button class="action-btn delete-btn" onclick="deleteProduct(${product.id})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                let products = JSON.parse(localStorage.getItem('products')) || [];
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('products', JSON.stringify(products));
+                loadProducts();
             }
-
-            emptyState.style.display = 'none';
-            document.getElementById('productsTable').style.display = 'table';
-
-            tbody.innerHTML = products.map(product => `
-                <tr>
-                    <td>${product.name}</td>
-                    <td>${product.category}</td>
-                    <td>${product.material}</td>
-                    <td>₹${product.price}</td>
-                    <td>${product.supplier}</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn-edit" onclick="openProductForm(${product.id})">Edit</button>
-                            <button class="btn-delete" onclick="deleteProduct(${product.id})">Delete</button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
         }
 
-        // SUPPLIER MANAGEMENT
-        function openSupplierForm(supplierId = null) {
-            editingSupplierId = supplierId;
-            const form = document.getElementById('supplierModal').querySelector('form');
-            
-            if (supplierId) {
-                document.getElementById('supplierModalTitle').textContent = 'Edit Supplier';
-                const suppliers = JSON.parse(localStorage.getItem('indiloom_suppliers')) || [];
-                const supplier = suppliers.find(s => s.id === supplierId);
-                
-                document.getElementById('supplierName').value = supplier.name;
-                document.getElementById('supplierLocation').value = supplier.location;
-                document.getElementById('supplierSpec').value = supplier.spec;
-                document.getElementById('supplierProducts').value = supplier.products;
-                document.getElementById('supplierClients').value = supplier.clients;
-                document.getElementById('supplierCertified').value = supplier.certified;
-                document.getElementById('supplierDescription').value = supplier.description;
-            } else {
-                document.getElementById('supplierModalTitle').textContent = 'Add New Supplier';
-                form.reset();
-            }
-
-            document.getElementById('supplierModal').classList.add('active');
-        }
-
-        function closeSupplierForm() {
-            document.getElementById('supplierModal').classList.remove('active');
-            editingSupplierId = null;
-        }
-
-        function handleSupplierSubmit(event) {
-            event.preventDefault();
-            
-            const suppliers = JSON.parse(localStorage.getItem('indiloom_suppliers')) || [];
+        // SUPPLIERS
+        document.getElementById('supplierForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             const supplier = {
-                id: editingSupplierId || Math.max(...suppliers.map(s => s.id), 0) + 1,
+                id: Date.now(),
                 name: document.getElementById('supplierName').value,
-                location: document.getElementById('supplierLocation').value,
-                spec: document.getElementById('supplierSpec').value,
                 products: document.getElementById('supplierProducts').value,
-                clients: document.getElementById('supplierClients').value,
-                certified: document.getElementById('supplierCertified').value,
-                description: document.getElementById('supplierDescription').value
+                orders: document.getElementById('supplierOrders').value,
+                rating: document.getElementById('supplierRating').value
             };
 
-            if (editingSupplierId) {
-                const index = suppliers.findIndex(s => s.id === editingSupplierId);
-                suppliers[index] = supplier;
-                showSuccess('Supplier updated successfully!');
-            } else {
-                suppliers.push(supplier);
-                showSuccess('Supplier added successfully!');
-            }
+            let suppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
+            suppliers.push(supplier);
+            localStorage.setItem('suppliers', JSON.stringify(suppliers));
 
-            localStorage.setItem('indiloom_suppliers', JSON.stringify(suppliers));
-            closeSupplierForm();
+            document.getElementById('supplierForm').reset();
             loadSuppliers();
-            loadDashboard();
-            
-            // Update main page if open
-            if (window.opener && window.opener.renderSuppliers) {
-                window.opener.renderSuppliers();
-            }
-        }
-
-        function deleteSupplier(supplierId) {
-            if (confirm('Are you sure you want to delete this supplier?')) {
-                let suppliers = JSON.parse(localStorage.getItem('indiloom_suppliers')) || [];
-                suppliers = suppliers.filter(s => s.id !== supplierId);
-                localStorage.setItem('indiloom_suppliers', JSON.stringify(suppliers));
-                loadSuppliers();
-                loadDashboard();
-                showSuccess('Supplier deleted successfully!');
-                
-                // Update main page
-                if (window.opener && window.opener.renderSuppliers) {
-                    window.opener.renderSuppliers();
-                }
-            }
-        }
+            alert('Supplier added successfully!');
+        });
 
         function loadSuppliers() {
-            const suppliers = JSON.parse(localStorage.getItem('indiloom_suppliers')) || [];
-            const tbody = document.getElementById('suppliersTableBody');
-            const emptyState = document.getElementById('suppliersEmpty');
+            const suppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
+            const tbody = document.getElementById('suppliersList');
+            tbody.innerHTML = '';
 
-            if (suppliers.length === 0) {
-                tbody.innerHTML = '';
-                emptyState.style.display = 'block';
-                document.getElementById('suppliersTable').style.display = 'none';
-                return;
-            }
-
-            emptyState.style.display = 'none';
-            document.getElementById('suppliersTable').style.display = 'table';
-
-            tbody.innerHTML = suppliers.map(supplier => `
-                <tr>
-                    <td>${supplier.name}</td>
-                    <td>${supplier.location}</td>
-                    <td>${supplier.spec}</td>
-                    <td>${supplier.products}</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn-edit" onclick="openSupplierForm(${supplier.id})">Edit</button>
-                            <button class="btn-delete" onclick="deleteSupplier(${supplier.id})">Delete</button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
+            suppliers.forEach(supplier => {
+                const row = `
+                    <tr>
+                        <td>${supplier.name}</td>
+                        <td>${supplier.products}</td>
+                        <td>${supplier.orders}</td>
+                        <td>⭐ ${supplier.rating}</td>
+                        <td>
+                            <button class="action-btn delete-btn" onclick="deleteSupplier(${supplier.id})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
         }
 
-        // SUCCESS MESSAGE
-        function showSuccess(message) {
-            const successMsg = document.getElementById('successMessage');
-            successMsg.textContent = message;
-            successMsg.classList.add('show');
-            setTimeout(() => {
-                successMsg.classList.remove('show');
-            }, 3000);
+        function deleteSupplier(id) {
+            if (confirm('Are you sure you want to delete this supplier?')) {
+                let suppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
+                suppliers = suppliers.filter(s => s.id !== id);
+                localStorage.setItem('suppliers', JSON.stringify(suppliers));
+                loadSuppliers();
+            }
         }
 
-        // Close modal on outside click
-        window.addEventListener('click', (event) => {
-            const productModal = document.getElementById('productModal');
-            const supplierModal = document.getElementById('supplierModal');
-            
-            if (event.target === productModal) {
-                closeProductForm();
-            }
-            if (event.target === supplierModal) {
-                closeSupplierForm();
-            }
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            document.getElementById('navbarMenu').classList.toggle('active');
         });
+
+        // Check login status on page load
+        window.addEventListener('DOMContentLoaded', checkLogin);
     </script>
 </body>
 </html>
